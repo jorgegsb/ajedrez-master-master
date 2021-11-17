@@ -13,9 +13,9 @@ export default class CanvasDrawEngine {
         document.getElementById(id).appendChild(this.CANVAS);
         //colors of the pieces and the board cells
         this.THEME = {
-            dark: "#0bbb07",
-            light: "#b1fcec",
-            tilePositionColor: "#000000"
+            dark: "#4d236d",
+            light: "#e6e6fa",
+
         }
         this.PIECETHEME = {
             black: "#000000",
@@ -33,13 +33,15 @@ export default class CanvasDrawEngine {
                 //draw the border of the Cell
                 const cell = board.LOGICBOARD[y][x];
                 if (cell.selected) {
-                    this.context.fillStyle = "#ec1309";
+                    this.context.fillStyle = "#00ffff";
+                    this.context.globalAlpha = 0.7;
                     this.context.fillRect(x * board.CELL_WIDTH, y * board.CELL_HEIGHT, board.CELL_WIDTH, board.CELL_HEIGHT);
+                    this.context.globalAlpha = 1;
                 }
 
                 if (cell.avialableMove) {
-                    this.context.fillStyle = "#000000";
-                    this.context.globalAlpha = 0.3;
+                    this.context.fillStyle = "#59981A";
+                    this.context.globalAlpha = 0.9;
                     this.context.beginPath();
                     this.context.arc(x * board.CELL_WIDTH + board.CELL_WIDTH / 2,
                         y * board.CELL_HEIGHT + board.CELL_HEIGHT / 2,
