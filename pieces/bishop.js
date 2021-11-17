@@ -6,32 +6,37 @@ export default class Bishop extends Piece {
     }
     availableMovements(position, LOGICBOARD) {
         const [x, y] = position;
-
-        for (let i = 1; i <= 2; i += 1) {
-            const cell = LOGICBOARD[y + i][x + i];
+        //down/Right
+        for (let i = 1; i <= LOGICBOARD.length; i += 1) {
+            const cell = this.getCellfromCords([y + i, x + i], LOGICBOARD);
             if (!cell) break;
-            if (cell.piece) break;
+            if (cell.piece && cell.piece.color === this.color) break;
             cell.setAvialableMove(true);
+            if (cell.piece) break;
         }
-
-        for (let i = 1; i <= 2; i += 1) {
-            const cell = LOGICBOARD[y - i][x + i];
+        //down/left
+        for (let i = 1; i <= LOGICBOARD.length; i += 1) {
+            const cell = this.getCellfromCords([y - i, x + i], LOGICBOARD);
             if (!cell) break;
-            if (cell.piece) break;
+            if (cell.piece && cell.piece.color === this.color) break;
             cell.setAvialableMove(true);
+            if (cell.piece) break;
         }
-
-        for (let i = 1; i <= 2; i += 1) {
-            const cell = LOGICBOARD[y + i][x - i];
+        //up/right
+        for (let i = 1; i <= LOGICBOARD.length; i += 1) {
+            const cell = this.getCellfromCords([y + i, x - i], LOGICBOARD);
             if (!cell) break;
-            if (cell.piece) break;
+            if (cell.piece && cell.piece.color === this.color) break;
             cell.setAvialableMove(true);
+            if (cell.piece) break;
         }
-        for (let i = 1; i <= 2; i += 1) {
-            const cell = LOGICBOARD[y - i][x - i];
+        //up/left
+        for (let i = 1; i <= LOGICBOARD.length; i += 1) {
+            const cell = this.getCellfromCords([y - i, x - i], LOGICBOARD);
             if (!cell) break;
-            if (cell.piece) break;
+            if (cell.piece && cell.piece.color === this.color) break;
             cell.setAvialableMove(true);
+            if (cell.piece) break;
         }
     }
 }

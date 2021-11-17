@@ -7,6 +7,12 @@ export default class Piece {
 
     }
 
+    getCellfromCords(position, LOGICBOARD) {
+        const [x, y] = position;
+        const rank = LOGICBOARD[y] || [];
+        const cell = rank[x];
+        return cell;
+    }
 
     availableMovements(position, LOGICBOARD) {
         throw new Error(`Missing avaliable movements in  ${this.type}`);

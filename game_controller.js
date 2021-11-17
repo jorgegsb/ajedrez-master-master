@@ -68,13 +68,15 @@ export default class GameController {
         //this make that if you drop the piece in the same cell dont loose the piece
         if (this._previousCell === selectedCell) {
             this._previousCell = null;
-            this.clearSelections();
+            this.clearAvailableMoves();
             this._CanvasDrawEngine.render(this._board);
+            this.clearSelections();
             return;
         }
         if (!selectedCell.avialableMove) {
             this._previousCell = null;
             this._CanvasDrawEngine.render(this._board);
+
             return;
         }
         selectedCell.setPiece(this._previousCell.piece);
