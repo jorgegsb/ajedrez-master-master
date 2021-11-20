@@ -5,5 +5,25 @@ export default class Knight extends Piece {
         super(color, ["♞", "♘"], "n")
     }
 
+    availableMovements(position, LOGICBOARD) {
+        const [y, x] = position;
 
+        const knightMov = [
+            [x - 1, y - 2],
+            [x + 1, y - 2],
+            [x + 2, y - 1],
+            [x + 2, y + 1],
+            [x + 1, y + 2],
+            [x - 1, y + 2],
+            [x - 2, y + 1],
+            [x - 2, y - 1],
+        ]
+
+        knightMov.forEach((movement) => {
+            const cell = this.getCellfromCords(movement, LOGICBOARD);
+
+            if (cell && !(cell.piece && cell.piece.color === this.color))
+                cell.setAvialableMove(true);
+        })
+    }
 }
