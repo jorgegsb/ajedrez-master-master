@@ -18,7 +18,7 @@ export default class Pawn extends Piece {
         //take piece conditions
         for (let i = 0; i < 2; i++) {
             const takeCell = this.getCellfromCords([y + (i ? 1 : -1), x + (1 * Ydirection)], LOGICBOARD);
-            if (takeCell.piece && takeCell.piece.color !== this.color) {
+            if (takeCell && takeCell.piece && takeCell.piece.color !== this.color) {
                 takeCell.setAvialableMove(true);
             }
         }
