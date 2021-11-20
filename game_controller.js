@@ -73,13 +73,17 @@ export default class GameController {
             this.clearSelections();
             return;
         }
+
         if (!selectedCell.avialableMove) {
             this._previousCell = null;
+            this.clearAvailableMoves();
             this._CanvasDrawEngine.render(this._board);
-
             return;
         }
+
         selectedCell.setPiece(this._previousCell.piece);
+        //if the piece is moved we set this to true, it´s necessary for some pieces like pawn
+        this._previousCell.piece.pieceMoved = true;
         this._selectedCells.push(selectedCell);
         this._previousCell.setPiece(null);
         this._previousCell = null;

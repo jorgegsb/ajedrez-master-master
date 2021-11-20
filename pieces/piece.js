@@ -4,7 +4,7 @@ export default class Piece {
         this.color = color;
         this.sprite = sprite;
         this.type = type;
-
+        this.pieceMoved = false;
     }
 
     getCellfromCords(position, LOGICBOARD) {
