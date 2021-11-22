@@ -17,7 +17,6 @@ export default class Bishop extends Piece {
             //up/right
             [-1, -1],
         ]
-
         bishopMov.forEach((mov) => {
             this.pieceDirection(position, mov, LOGICBOARD);
         });
