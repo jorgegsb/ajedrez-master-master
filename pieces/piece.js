@@ -14,6 +14,17 @@ export default class Piece {
         return cell;
     }
 
+    pieceDirection(position, direction, LOGICBOARD) {
+        const [x, y] = position;
+        const [dirX, dirY] = direction;
+        for (let i = 1; i <= LOGICBOARD.length; i += 1) {
+            const cell = this.getCellfromCords([y + (i * dirY), x + (i * dirX)], LOGICBOARD);
+            if (!cell) break;
+            if (cell.piece && cell.piece.color === this.color) break;
+            cell.setAvialableMove(true);
+            if (cell.piece) break;
+        }
+    }
     availableMovements(position, LOGICBOARD) {
         throw new Error(`Missing avaliable movements in  ${this.type}`);
     }
