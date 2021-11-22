@@ -6,17 +6,23 @@ export default class Rook extends Piece {
     }
 
     availableMovements(position, LOGICBOARD) {
-        //up
-        this.pieceDirection(position, [-1, 0], LOGICBOARD)
 
-        //down
-        this.pieceDirection(position, [1, 0], LOGICBOARD)
+        const RookMov = [
+            //up
+            [-1, 0],
+            //down
+            [1, 0],
+            //Right
+            [0, 1],
+            //left
+            [0, -1]
+        ]
 
-        //Right
-        this.pieceDirection(position, [0, 1], LOGICBOARD)
+        RookMov.forEach((mov) => {
+            this.pieceDirection(position, mov, LOGICBOARD);
+        });
 
-        //left
-        this.pieceDirection(position, [0, -1], LOGICBOARD)
+
 
 
 

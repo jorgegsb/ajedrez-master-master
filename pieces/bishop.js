@@ -7,17 +7,20 @@ export default class Bishop extends Piece {
 
 
     availableMovements(position, LOGICBOARD) {
-        //down/Right
-        this.pieceDirection(position, [1, 1], LOGICBOARD)
+        const bishopMov = [
+            //down/Right
+            [1, 1],
+            //down/left
+            [1, -1],
+            //up/right
+            [-1, 1],
+            //up/right
+            [-1, -1],
+        ]
 
-        //down/left
-        this.pieceDirection(position, [1, -1], LOGICBOARD)
-
-        //up/right
-        this.pieceDirection(position, [-1, 1], LOGICBOARD)
-
-        //up/left
-        this.pieceDirection(position, [-1, -1], LOGICBOARD)
+        bishopMov.forEach((mov) => {
+            this.pieceDirection(position, mov, LOGICBOARD);
+        });
 
     }
 }

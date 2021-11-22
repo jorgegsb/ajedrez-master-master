@@ -7,29 +7,27 @@ export default class Queen extends Piece {
 
 
     availableMovements(position, LOGICBOARD) {
-        //up
-        this.pieceDirection(position, [-1, 0], LOGICBOARD)
+        const QueenMov = [
+            //down/Right
+            [1, 1],
+            //down/left
+            [1, -1],
+            //up/right
+            [-1, 1],
+            //up/right
+            [-1, -1],
+            //up
+            [-1, 0],
+            //down
+            [1, 0],
+            //Right
+            [0, 1],
+            //left
+            [0, -1]
 
-        //down
-        this.pieceDirection(position, [1, 0], LOGICBOARD)
-
-        //Right
-        this.pieceDirection(position, [0, 1], LOGICBOARD)
-
-        //left
-        this.pieceDirection(position, [0, -1], LOGICBOARD)
-
-        //down/Right
-        this.pieceDirection(position, [1, 1], LOGICBOARD)
-
-        //down/left
-        this.pieceDirection(position, [1, -1], LOGICBOARD)
-
-        //up/right
-        this.pieceDirection(position, [-1, 1], LOGICBOARD)
-
-        //up/left
-        this.pieceDirection(position, [-1, -1], LOGICBOARD)
-
+        ];
+        QueenMov.forEach((mov) => {
+            this.pieceDirection(position, mov, LOGICBOARD);
+        });
     }
 }
