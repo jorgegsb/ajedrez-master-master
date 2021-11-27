@@ -25,6 +25,9 @@ export default class Piece {
             if (cell.piece) break;
         }
     }
+    ValidCell(cell) {
+        return cell && !(cell.piece && cell.piece.color === this.color);
+    }
     availableMovements(position, LOGICBOARD) {
         throw new Error(`Missing avaliable movements in  ${this.type}`);
     }

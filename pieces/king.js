@@ -6,6 +6,27 @@ export default class King extends Piece {
         super(color, ["♚", "♔"], "k")
     }
 
+
+    castling(position, LOGICBOARD) {
+        const [y, x] = position;
+        if (y === 7 && x === 5) {
+            const rookCell = LOGICBOARD[7][7];
+            LOGICBOARD[7][4].setPiece(rookCell.piece);
+            rookCell.setPiece(null);
+        } else if (y === 0 && x == 5) {
+            const rookCell = LOGICBOARD[0][7];
+            LOGICBOARD[0][4].setPiece(rookCell.piece);
+            rookCell.setPiece(null);
+        } else if (y === 7 && x == 1) {
+            const rookCell = LOGICBOARD[7][0];
+            LOGICBOARD[7][2].setPiece(rookCell.piece);
+            rookCell.setPiece(null);
+        } else if (y === 0 && x == 1) {
+            const rookCell = LOGICBOARD[0][0];
+            LOGICBOARD[0][2].setPiece(rookCell.piece);
+            rookCell.setPiece(null);
+        }
+    }
     availableMovements(position, LOGICBOARD) {
         const [y, x] = position;
 
@@ -31,7 +52,34 @@ export default class King extends Piece {
         KingMov.forEach((mov) => {
             const [dirX, dirY] = mov;
             const cell = this.getCellfromCords([x + (1 * dirY), y + (1 * dirX)], LOGICBOARD);
-            if (cell && !(cell.piece && cell.piece.color === this.color)) cell.setAvialableMove(true);
-        })
+            if (this.ValidCell(cell)) cell.setAvialableMove(true);
+        });
+        //castling movement
+        if (this.pieceMoved) return;
+
+        const castlingRightDirectionCell1 = this.getCellfromCords([x + 3, y], LOGICBOARD);
+        const castlingRightDirectionCell2 = this.getCellfromCords([x + 1, y], LOGICBOARD);
+        const castlingRightDirectionCell3 = this.getCellfromCords([x + 2, y], LOGICBOARD);
+        const castlingRightDirectionRook = this.getCellfromCords([x + 4, y], LOGICBOARD);
+        //RightCastling movement
+        if ((!castlingRightDirectionCell1.piece) &&
+            (!castlingRightDirectionCell2.piece) &&
+            (castlingRightDirectionRook.piece) &&
+            (castlingRightDirectionRook.piece.type === "r") &&
+            (!castlingRightDirectionRook.piece.pieceMoved)) {
+            castlingRightDirectionCell3.setAvialableMove(true)
+        };
+        const castlingLeftDirectionCell1 = this.getCellfromCords([x - 2, y], LOGICBOARD);
+        const castlingLeftDirectionCell2 = this.getCellfromCords([x - 1, y], LOGICBOARD);
+        const castlingLeftDirectionRook = this.getCellfromCords([x - 3, y], LOGICBOARD);
+        //LeftCastling movement
+        if ((!castlingLeftDirectionCell1.piece) &&
+            (!castlingLeftDirectionCell2.piece) &&
+            (castlingLeftDirectionRook.piece) &&
+            (castlingLeftDirectionRook.piece.type === "r") &&
+            (!castlingLeftDirectionRook.piece.pieceMoved)) {
+            castlingLeftDirectionCell1.setAvialableMove(true);
+        }
+
     }
 }

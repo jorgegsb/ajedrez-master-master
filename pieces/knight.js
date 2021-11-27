@@ -21,9 +21,7 @@ export default class Knight extends Piece {
 
         knightMov.forEach((movement) => {
             const cell = this.getCellfromCords(movement, LOGICBOARD);
-
-            if (cell && !(cell.piece && cell.piece.color === this.color))
-                cell.setAvialableMove(true);
+            if (this.ValidCell(cell)) cell.setAvialableMove(true);
         })
     }
 }

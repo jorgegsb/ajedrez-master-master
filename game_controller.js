@@ -48,6 +48,7 @@ export default class GameController {
 
     _PickPiece(event) {
         this.clearSelections();
+
         if (this._previousCell) return;
         const { offsetX, offsetY } = event;
         const [x, y] = this._mouseCoordinatesCell(offsetX, offsetY);
@@ -79,6 +80,13 @@ export default class GameController {
             this.clearAvailableMoves();
             this._CanvasDrawEngine.render(this._board);
             return;
+        }
+        //Castling 
+        if (this._previousCell.piece.type === "k") {
+            const kingPiece = this._previousCell.piece;
+            if (!kingPiece.moved) {
+                kingPiece.castling([y, x], this._board.LOGICBOARD)
+            }
         }
 
         selectedCell.setPiece(this._previousCell.piece);
