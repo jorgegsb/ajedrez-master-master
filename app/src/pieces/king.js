@@ -54,9 +54,9 @@ export default class King extends Piece {
             const cell = this.getCellfromCords([x + (1 * dirY), y + (1 * dirX)], LOGICBOARD);
             if (this.ValidCell(cell)) cell.setAvialableMove(true);
         });
-        //castling movement
-        if (this.pieceMoved) return;
 
+        if (this.pieceMoved) return;
+        //castling movement
         const castlingRightDirectionCell1 = this.getCellfromCords([x + 3, y], LOGICBOARD);
         const castlingRightDirectionCell2 = this.getCellfromCords([x + 1, y], LOGICBOARD);
         const castlingRightDirectionCell3 = this.getCellfromCords([x + 2, y], LOGICBOARD);
